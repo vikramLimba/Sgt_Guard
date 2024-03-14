@@ -2,14 +2,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:form_login/formsignup.dart';
-import 'package:form_login/list.dart';
-import 'package:form_login/propeties.dart';
-import 'package:form_login/select_plan.dart';
-import 'package:form_login/sgt_my_account.dart';
-import 'package:form_login/create_route.dart';
-import 'package:form_login/shift.dart';
-import 'package:form_login/test_code.dart';
+import 'package:form_login/practise_pages/formsignup.dart';
+
+import 'package:get/route_manager.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -139,10 +134,7 @@ class _LoginState extends State<Login> {
                             )),
                         TextButton(
                             onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const MyList()));
+                              Get.toNamed('mylist');
                             },
                             child: const Text(
                               "list",
@@ -151,11 +143,7 @@ class _LoginState extends State<Login> {
                             )),
                         TextButton(
                             onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const SgtMyAccount()));
+                              Get.toNamed('SgtMyAccount');
                             },
                             child: const Text(
                               "SGT My Account",
@@ -164,11 +152,7 @@ class _LoginState extends State<Login> {
                             )),
                         TextButton(
                             onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const CreateRoute()));
+                              Get.toNamed("CreateRoute");
                             },
                             child: const Text(
                               "Route Page",
@@ -177,10 +161,7 @@ class _LoginState extends State<Login> {
                             )),
                         TextButton(
                             onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const Shift()));
+                              Get.toNamed('Shift');
                             },
                             child: const Text(
                               "Shift",
@@ -202,10 +183,7 @@ class _LoginState extends State<Login> {
                             )),
                         TextButton(
                             onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (builder) => Properties()));
+                              Get.toNamed('Properties');
                             },
                             child: const Text(
                               "Properties",
@@ -216,10 +194,7 @@ class _LoginState extends State<Login> {
                             )),
                         TextButton(
                             onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (builder) => SelectPlan()));
+                              Get.toNamed('SelectPlan');
                             },
                             child: const Text(
                               "Select Plan",
@@ -230,18 +205,26 @@ class _LoginState extends State<Login> {
                             )),
                         TextButton(
                             onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (builder) => StackOver()));
+                              Get.toNamed('AddNewGuard');
+                            },
+                            child: Text(
+                              "Add New Guard",
+                              style: TextStyle(
+                                  color: Colors.amber[900],
+                                  fontSize: 28,
+                                  fontWeight: FontWeight.w600),
+                            )),
+                        TextButton(
+                            onPressed: () {
+                              Get.toNamed('StackOver');
                             },
                             child: const Text(
                               "Test Code",
                               style: TextStyle(
-                                  color: Colors.red,
+                                  color: Colors.brown,
                                   fontSize: 28,
                                   fontWeight: FontWeight.w600),
-                            ))
+                            )),
                       ],
                     ),
                   ],

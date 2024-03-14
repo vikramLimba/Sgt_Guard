@@ -32,7 +32,11 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter:
     sdk: flutter
+  flutter_easyloading: ^3.0.5
   flutter_screenutil: ^5.9.0
+  fluttericon: ^2.0.0
+  get: ^4.6.6
+  google_fonts: ^6.1.0
   google_maps_flutter: ^2.5.3
   image_picker: ^1.0.7
   location: ^5.0.3

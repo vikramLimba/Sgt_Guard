@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:form_login/assing_gaurd.dart';
-import 'package:form_login/progress_bar.dart';
+import 'package:form_login/sgt_pages/progress_bar.dart';
 
-class RoutePage extends StatefulWidget {
-  const RoutePage({super.key});
-  // const RoutePage({
+class Assigngaurd extends StatefulWidget {
+  const Assigngaurd({super.key});
+  // const Assigngaurd({
   //   Key? key,
   // }) : super(key: key);
 
   @override
-  State<RoutePage> createState() => _RoutePageState();
+  State<Assigngaurd> createState() => _AssigngaurdState();
 }
 
-class _RoutePageState extends State<RoutePage> {
-  final int pageIndex = 2;
-
+class _AssigngaurdState extends State<Assigngaurd> {
+  final int pageIndex = 3;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -26,7 +24,7 @@ class _RoutePageState extends State<RoutePage> {
                 Navigator.pop(context);
               },
               icon: const Icon(Icons.arrow_back)),
-          title: const Text("Create Route"),
+          title: const Text("Assign Gaurd"),
           centerTitle: false,
           titleSpacing: 0,
           toolbarHeight: 63,
@@ -35,10 +33,11 @@ class _RoutePageState extends State<RoutePage> {
           child: Column(
             children: [
               Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 42),
-                  child: Row(
-                    children: [ProgressBar(currentIndex: pageIndex)],
-                  )),
+                padding: const EdgeInsets.symmetric(horizontal: 42),
+                child: Row(
+                  children: [ProgressBar(currentIndex: pageIndex)],
+                ),
+              ),
               const SizedBox(
                 height: 20,
               ),
@@ -131,22 +130,8 @@ class _RoutePageState extends State<RoutePage> {
                 height: 20,
               ),
               const Text(
-                "Add Checkpoint on the Route ",
+                "Select Route to Assign Guard",
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: SizedBox(
-                  width: 327,
-                  height: 46,
-                  child: TextField(
-                    decoration: InputDecoration(
-                        label: const Text("Route Name"),
-                        hintText: "Enter Enter Name",
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(4))),
-                  ),
-                ),
               ),
               Padding(
                 padding: const EdgeInsets.all(10.0),
@@ -156,8 +141,8 @@ class _RoutePageState extends State<RoutePage> {
                   child: TextFormField(
                     decoration: InputDecoration(
                         suffixIcon: const Icon(Icons.keyboard_arrow_down),
-                        label: const Text("Select Shift"),
-                        hintText: "Select Shift",
+                        label: const Text("Select Route"),
+                        hintText: "Select Route",
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(4))),
                   ),
@@ -173,12 +158,11 @@ class _RoutePageState extends State<RoutePage> {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(4))),
                     onPressed: () {
-                      setState(() {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const Assigngaurd()));
-                      });
+                      // Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //         builder: (context) => const RoutePage()
+                      //         ));
                     },
                     child: const Text("Save & Next")),
               )

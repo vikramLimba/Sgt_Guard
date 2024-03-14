@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:form_login/styles/colors.dart';
 
 class SelectPlan extends StatefulWidget {
   const SelectPlan({super.key});
@@ -131,7 +132,7 @@ class _SelectPlanState extends State<SelectPlan> {
           child: Scaffold(
               backgroundColor: Color.fromRGBO(245, 246, 249, 1),
               appBar: AppBar(
-                elevation: 5,
+                elevation: 6,
                 backgroundColor: Colors.white,
                 shadowColor: Color.fromRGBO(0, 0, 0, 0.466),
                 leading: IconButton(
@@ -961,6 +962,33 @@ class _SelectPlanState extends State<SelectPlan> {
                       ),
                     ]),
                   ),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 16.w),
+                          child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  shadowColor: Colors.transparent,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(7.r)),
+                                  fixedSize: Size.fromHeight(47.h),
+                                  foregroundColor: AppColors.white,
+                                  backgroundColor: AppColors.disableColor),
+                              onPressed: () {},
+                              child: Text(
+                                "Next",
+                                style: TextStyle(
+                                    fontSize: 16.sp,
+                                    fontWeight: FontWeight.w600),
+                              )),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 46.h,
+                  )
                 ],
               )),
         ));

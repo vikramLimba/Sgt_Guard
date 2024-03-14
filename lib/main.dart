@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:form_login/Login.dart';
+import 'package:form_login/styles/colors.dart';
+import 'package:form_login/guard_&_assign_duty/routes.dart';
+import 'package:get/route_manager.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 void main() {
   runApp(const LoginForm());
@@ -21,16 +25,27 @@ class _LoginFormState extends State<LoginForm> {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (_, child) {
-        return MaterialApp(
-          theme: ThemeData(),
+        return GetMaterialApp(
           debugShowCheckedModeBanner: false,
-          home: Scaffold(
-            appBar: AppBar(
-              toolbarHeight: 10,
-            ),
-            body: const Login(),
-          ),
+          title: 'SGT Owner',
+          theme: ThemeData(primarySwatch: AppColors.kThemeColor),
+          initialRoute: "/",
+          defaultTransition: Transition.cupertino,
+          getPages: RouteClass.routes,
+          home: Login(),
+          builder: EasyLoading.init(),
         );
+
+        //  MaterialApp(
+        //   theme: ThemeData(),
+        //   debugShowCheckedModeBanner: false,
+        //   home: Scaffold(
+        //     appBar: AppBar(
+        //       toolbarHeight: 10,
+        //     ),
+        //     body: const Login(),
+        //   ),
+        // );
       },
     );
   }

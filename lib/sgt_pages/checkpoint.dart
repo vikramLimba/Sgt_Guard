@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:form_login/progress_bar.dart';
+import 'package:form_login/sgt_pages/progress_bar.dart';
+import 'package:form_login/sgt_pages/route.dart';
 
-class Assigngaurd extends StatefulWidget {
-  const Assigngaurd({super.key});
-  // const Assigngaurd({
+class Checkpoint extends StatefulWidget {
+  // const Checkpoint({
   //   Key? key,
   // }) : super(key: key);
-
+  const Checkpoint({super.key});
   @override
-  State<Assigngaurd> createState() => _AssigngaurdState();
+  State<Checkpoint> createState() => _CheckpointState();
 }
 
-class _AssigngaurdState extends State<Assigngaurd> {
-  final int pageIndex = 3;
+class _CheckpointState extends State<Checkpoint> {
+  int pageIndex = 1;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -24,7 +24,7 @@ class _AssigngaurdState extends State<Assigngaurd> {
                 Navigator.pop(context);
               },
               icon: const Icon(Icons.arrow_back)),
-          title: const Text("Assign Gaurd"),
+          title: const Text("Create Checkpoint"),
           centerTitle: false,
           titleSpacing: 0,
           toolbarHeight: 63,
@@ -130,7 +130,7 @@ class _AssigngaurdState extends State<Assigngaurd> {
                 height: 20,
               ),
               const Text(
-                "Select Route to Assign Guard",
+                "Checkpoint Details",
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
               ),
               Padding(
@@ -138,11 +138,24 @@ class _AssigngaurdState extends State<Assigngaurd> {
                 child: SizedBox(
                   width: 327,
                   height: 46,
+                  child: TextField(
+                    decoration: InputDecoration(
+                        label: const Text("Checkpoint Name"),
+                        hintText: "Enter Checkpoint",
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(4))),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: SizedBox(
+                  width: 327,
+                  height: 86,
                   child: TextFormField(
                     decoration: InputDecoration(
-                        suffixIcon: const Icon(Icons.keyboard_arrow_down),
-                        label: const Text("Select Route"),
-                        hintText: "Select Route",
+                        label: const Text("Checkpoint Description"),
+                        hintText: "Write Description here",
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(4))),
                   ),
@@ -158,11 +171,13 @@ class _AssigngaurdState extends State<Assigngaurd> {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(4))),
                     onPressed: () {
-                      // Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //         builder: (context) => const RoutePage()
-                      //         ));
+                      setState(() {
+                        pageIndex++;
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const RoutePage()));
+                      });
                     },
                     child: const Text("Save & Next")),
               )

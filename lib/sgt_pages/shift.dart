@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:form_login/checkpoint.dart';
-import 'package:form_login/progress_bar.dart';
+import 'package:form_login/sgt_pages/checkpoint.dart';
+import 'package:form_login/sgt_pages/progress_bar.dart';
 
 class Shift extends StatefulWidget {
   const Shift({super.key});

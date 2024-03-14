@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:form_login/progress_bar.dart';
-import 'package:form_login/route.dart';
+import 'package:form_login/sgt_pages/assing_gaurd.dart';
+import 'package:form_login/sgt_pages/progress_bar.dart';
 
-class Checkpoint extends StatefulWidget {
-  // const Checkpoint({
+class RoutePage extends StatefulWidget {
+  const RoutePage({super.key});
+  // const RoutePage({
   //   Key? key,
   // }) : super(key: key);
-  const Checkpoint({super.key});
+
   @override
-  State<Checkpoint> createState() => _CheckpointState();
+  State<RoutePage> createState() => _RoutePageState();
 }
 
-class _CheckpointState extends State<Checkpoint> {
-  int pageIndex = 1;
+class _RoutePageState extends State<RoutePage> {
+  final int pageIndex = 2;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -24,7 +26,7 @@ class _CheckpointState extends State<Checkpoint> {
                 Navigator.pop(context);
               },
               icon: const Icon(Icons.arrow_back)),
-          title: const Text("Create Checkpoint"),
+          title: const Text("Create Route"),
           centerTitle: false,
           titleSpacing: 0,
           toolbarHeight: 63,
@@ -33,11 +35,10 @@ class _CheckpointState extends State<Checkpoint> {
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 42),
-                child: Row(
-                  children: [ProgressBar(currentIndex: pageIndex)],
-                ),
-              ),
+                  padding: const EdgeInsets.symmetric(horizontal: 42),
+                  child: Row(
+                    children: [ProgressBar(currentIndex: pageIndex)],
+                  )),
               const SizedBox(
                 height: 20,
               ),
@@ -130,7 +131,7 @@ class _CheckpointState extends State<Checkpoint> {
                 height: 20,
               ),
               const Text(
-                "Checkpoint Details",
+                "Add Checkpoint on the Route ",
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
               ),
               Padding(
@@ -140,8 +141,8 @@ class _CheckpointState extends State<Checkpoint> {
                   height: 46,
                   child: TextField(
                     decoration: InputDecoration(
-                        label: const Text("Checkpoint Name"),
-                        hintText: "Enter Checkpoint",
+                        label: const Text("Route Name"),
+                        hintText: "Enter Enter Name",
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(4))),
                   ),
@@ -151,11 +152,12 @@ class _CheckpointState extends State<Checkpoint> {
                 padding: const EdgeInsets.all(10.0),
                 child: SizedBox(
                   width: 327,
-                  height: 86,
+                  height: 46,
                   child: TextFormField(
                     decoration: InputDecoration(
-                        label: const Text("Checkpoint Description"),
-                        hintText: "Write Description here",
+                        suffixIcon: const Icon(Icons.keyboard_arrow_down),
+                        label: const Text("Select Shift"),
+                        hintText: "Select Shift",
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(4))),
                   ),
@@ -172,11 +174,10 @@ class _CheckpointState extends State<Checkpoint> {
                             borderRadius: BorderRadius.circular(4))),
                     onPressed: () {
                       setState(() {
-                        pageIndex++;
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const RoutePage()));
+                                builder: (context) => const Assigngaurd()));
                       });
                     },
                     child: const Text("Save & Next")),

@@ -1,4 +1,5 @@
-import 'package:form_login/guard_&_assign_duty/new_guard/new_guard_profile/new_guard_profile_controller/views/profile_page.dart';
+import 'package:form_login/guard_&_assign_duty/new_guard/address_page/view/address_page.dart';
+import 'package:form_login/guard_&_assign_duty/new_guard/profile_page/view/profile_page.dart';
 import 'package:form_login/guard_&_assign_duty/add_new_guard.dart';
 import 'package:form_login/sgt_pages/create_route.dart';
 import 'package:form_login/practise_pages/list.dart';
@@ -21,6 +22,7 @@ class RouteClass {
     GetPage(name: "/SelectPlan", page: () => SelectPlan()),
     GetPage(name: "/StackOver", page: () => StackOver()),
     GetPage(name: '/AddNewGuard', page: () => AddNewGuard()),
-    GetPage(name: '/ProfilePage', page: () => ProfilePage())
+    GetPage(name: '/ProfilePage', page: () => ProfilePage()),
+    GetPage(name: '/AddressPage', page: () => AddressPage())
   ];
 }

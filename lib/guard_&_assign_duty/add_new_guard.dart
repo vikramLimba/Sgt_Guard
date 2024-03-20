@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:form_login/styles/colors.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:get/route_manager.dart';
 
 class AddNewGuard extends StatelessWidget {
@@ -10,7 +9,7 @@ class AddNewGuard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowMaterialGrid: false,
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
           leading: IconButton(

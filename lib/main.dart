@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:form_login/Login.dart';
 import 'package:form_login/styles/colors.dart';
-import 'package:form_login/guard_&_assign_duty/routes.dart';
+import 'package:form_login/shared/routes/routes.dart';
 import 'package:get/route_manager.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 

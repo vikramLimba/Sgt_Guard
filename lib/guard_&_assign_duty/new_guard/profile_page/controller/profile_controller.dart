@@ -23,7 +23,6 @@ class ProfileController extends GetxController {
   var gender = " ";
   var guardPosition = " ";
   var dateOfBirth = " ";
-
   var mobileNumber = '';
   var email = '';
 

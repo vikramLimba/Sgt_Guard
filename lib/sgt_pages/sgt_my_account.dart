@@ -30,13 +30,10 @@ class _SgtMyAccountState extends State<SgtMyAccount> {
   Future getCountries() async {
     String data = await DefaultAssetBundle.of(context)
         .loadString("assets/data/country_state_city.json");
-    // print("data:$data");
     List mapData = jsonDecode(data);
-    // print("mapData:$mapData");
 
     List<Country> countryList =
         mapData.map((e) => Country.fromJson(e)).toList();
-    // print("list: $countryList");
 
     return countryList;
   }
@@ -148,14 +145,21 @@ class _SgtMyAccountState extends State<SgtMyAccount> {
                         height: 20,
                       ),
                       buildPostalCode(),
-                      // const SizedBox(
-                      //   height: 20,
-                      // ),
-                      // buildCountryName(),
                       const SizedBox(
                         height: 20,
                       ),
-                      buildCountryStateCityName(),
+                      buildCountry(),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      buildState(),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      buildCity(),
+                      const SizedBox(
+                        height: 20,
+                      ),
                     ]),
                   ),
                 ),
@@ -321,7 +325,8 @@ class _SgtMyAccountState extends State<SgtMyAccount> {
     );
   }
 
-  Widget buildCountryStateCityName() {
+  List<Country>? snapshotData;
+  Widget buildCountry() {
     return FutureBuilder(
         future: getCountries(),
         builder: (context, snapshot) {
@@ -336,133 +341,117 @@ class _SgtMyAccountState extends State<SgtMyAccount> {
             return const Text("No data available");
           } else if (snapshot.hasData) {
             print('print----------------4');
-            List<Country>? snapshotData = snapshot.data;
-            // print("snapshot.data:$snapshot.data");
-            return Column(
-              children: [
-                //======================Country
-                DropdownButtonFormField(
-                  decoration: InputDecoration(
-                      focusedBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: Color.fromRGBO(216, 216, 220, 1),
-                              width: 1)),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(4)),
-                      label: RichText(
-                        text: const TextSpan(
-                            text: "Country",
-                            style: TextStyle(color: Colors.black87),
-                            children: [
-                              TextSpan(
-                                  text: "*",
-                                  style: TextStyle(color: Colors.red))
-                            ]),
-                      )),
-                  items: snapshotData
-                      ?.map((e) => DropdownMenuItem(
-                          value: e.name.toString(),
-                          child: Text(
-                            e.name.toString(),
-                          )))
-                      .toList(),
-                  onChanged: (newValue) {
-                    setState(() {
-                      selectedCountry = newValue;
-                      selectedState = null;
-                      selectedCity = null;
 
-                      print("selectedCountry:$selectedCountry");
+            snapshotData = snapshot.data;
 
-                      selectedCountryStates = snapshotData!
-                          .firstWhere((element) => element.name == newValue)
-                          .states!;
-                    });
-                  },
-                  value: selectedCountry,
-                ),
-                const SizedBox(height: 20),
+            return DropdownButtonFormField(
+              decoration: InputDecoration(
+                  focusedBorder: const OutlineInputBorder(
+                      borderSide: BorderSide(
+                          color: Color.fromRGBO(216, 216, 220, 1), width: 1)),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(4)),
+                  label: RichText(
+                    text: const TextSpan(
+                        text: "Country",
+                        style: TextStyle(color: Colors.black87),
+                        children: [
+                          TextSpan(
+                              text: "*", style: TextStyle(color: Colors.red))
+                        ]),
+                  )),
+              items: snapshotData
+                  ?.map((country) => DropdownMenuItem(
+                      value: country.name.toString(),
+                      child: Text(
+                        country.name.toString(),
+                      )))
+                  .toList(),
+              onChanged: (newValue) {
+                setState(() {
+                  selectedCountry = newValue;
+                  selectedState = null;
+                  selectedCity = null;
 
-                //======================State
-                DropdownButtonFormField(
-                  isExpanded: true,
-                  decoration: InputDecoration(
-                      focusedBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: Color.fromRGBO(216, 216, 220, 1),
-                              width: 1)),
-                      border: const OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(4))),
-                      label: RichText(
-                          text: const TextSpan(
-                              text: "States",
-                              style: TextStyle(color: Colors.black87),
-                              children: [
-                            TextSpan(
-                                text: "*", style: TextStyle(color: Colors.red))
-                          ]))),
-                  items: selectedCountryStates
-                      .map((e) => DropdownMenuItem<dynamic>(
-                          value: e.name!, child: Text(e.name!)))
-                      .toList(),
-                  onChanged: (newValue) {
-                    setState(() {
-                      selectedState = newValue;
-                      selectedCity = null;
-                      print("selected State: $selectedState");
+                  print("selectedCountry:$selectedCountry");
 
-                      selectedStatesCities = selectedCountryStates
-                          .firstWhere((element) => element.name == newValue)
-                          .cities!;
-                      // if (selectedCountryStates == []) {
-                      //   print("states is empty");
-                      // } else {
-                      //   print("state data: $selectedState");
-                      // }
-                    });
-                  },
-                  value: selectedState,
-                ),
-                const SizedBox(height: 20),
-
-                //======================City
-                DropdownButtonFormField(
-                  isExpanded: true,
-                  decoration: InputDecoration(
-                      focusedBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: Color.fromRGBO(216, 216, 220, 1),
-                              width: 1)),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(4)),
-                      label: RichText(
-                        text: const TextSpan(
-                            text: 'Cities',
-                            style: TextStyle(color: Colors.black87),
-                            children: [
-                              TextSpan(
-                                  text: "*",
-                                  style: TextStyle(color: Colors.red))
-                            ]),
-                      )),
-                  items: selectedStatesCities
-                      .map((e) => DropdownMenuItem(
-                          value: e.name!, child: Text(e.name!)))
-                      .toList(),
-                  onChanged: (newValue) {
-                    // selectedCity = "";
-                    setState(() {
-                      selectedCity = newValue;
-                      print("selectedCity: $selectedCity");
-                    });
-                  },
-                  value: selectedCity,
-                )
-              ],
+                  selectedCountryStates = snapshotData!
+                      .firstWhere((element) => element.name == newValue)
+                      .states!;
+                });
+              },
+              value: selectedCountry,
             );
           } else {
             return Container();
           }
         });
   }
+
+  Widget buildState() {
+    return DropdownButtonFormField(
+      isExpanded: true,
+      decoration: InputDecoration(
+          focusedBorder: const OutlineInputBorder(
+              borderSide: BorderSide(
+                  color: Color.fromRGBO(216, 216, 220, 1), width: 1)),
+          border: const OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(4))),
+          label: RichText(
+              text: const TextSpan(
+                  text: "States",
+                  style: TextStyle(color: Colors.black87),
+                  children: [
+                TextSpan(text: "*", style: TextStyle(color: Colors.red))
+              ]))),
+      items: selectedCountryStates
+          .map((e) =>
+              DropdownMenuItem<dynamic>(value: e.name!, child: Text(e.name!)))
+          .toList(),
+      onChanged: (newValue) {
+        setState(() {
+          selectedState = newValue;
+          selectedCity = null;
+          print("selected State: $selectedState");
+
+          selectedStatesCities = selectedCountryStates
+              .firstWhere((element) => element.name == newValue)
+              .cities!;
+        });
+      },
+      value: selectedState,
+    );
+  }
+
+  Widget buildCity() {
+    return DropdownButtonFormField(
+      isExpanded: true,
+      decoration: InputDecoration(
+          focusedBorder: const OutlineInputBorder(
+              borderSide: BorderSide(
+                  color: Color.fromRGBO(216, 216, 220, 1), width: 1)),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(4)),
+          label: RichText(
+            text: const TextSpan(
+                text: 'Cities',
+                style: TextStyle(color: Colors.black87),
+                children: [
+                  TextSpan(text: "*", style: TextStyle(color: Colors.red))
+                ]),
+          )),
+      items: selectedStatesCities
+          .map((e) => DropdownMenuItem(value: e.name!, child: Text(e.name!)))
+          .toList(),
+      onChanged: (newValue) {
+        // selectedCity = "";
+        setState(() {
+          selectedCity = newValue;
+          print("selectedCity: $selectedCity");
+        });
+      },
+      value: selectedCity,
+    );
+  }
 }
+
+class countryStateCity {}

@@ -130,11 +130,11 @@ class _SelectPlanState extends State<SelectPlan> {
         home: DefaultTabController(
           length: 2,
           child: Scaffold(
-              backgroundColor: Color.fromRGBO(245, 246, 249, 1),
+              backgroundColor: const Color.fromRGBO(245, 246, 249, 1),
               appBar: AppBar(
                 elevation: 6,
                 backgroundColor: Colors.white,
-                shadowColor: Color.fromRGBO(0, 0, 0, 0.466),
+                shadowColor: const Color.fromRGBO(0, 0, 0, 0.466),
                 leading: IconButton(
                     onPressed: () {
                       Navigator.pop(context);

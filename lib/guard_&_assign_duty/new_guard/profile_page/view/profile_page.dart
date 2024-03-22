@@ -1,18 +1,14 @@
 import 'dart:io';
 import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart'
     show CalendarCarousel, WeekdayFormat;
-import 'package:flutter_calendar_carousel/classes/event.dart';
 import 'package:form_login/guard_&_assign_duty/new_guard/shared/view/image_picker.dart';
-import 'package:intl/intl.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:form_login/guard_&_assign_duty/new_guard/profile_page/controller/profile_controller.dart';
-import 'package:form_login/shared/widgets/custom_bottomsheet.dart';
 import 'package:form_login/styles/colors.dart';
 import 'package:form_login/guard_&_assign_duty/new_guard/shared/controller/image_picker_controller.dart';
 import 'package:form_login/guard_&_assign_duty/new_guard/shared/view/new_guard_progress_bar.dart';
-import 'package:form_login/styles/font_style.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 

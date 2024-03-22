@@ -13,16 +13,16 @@ import 'package:get/get.dart';
 
 class RouteClass {
   static List<GetPage> routes = [
-    GetPage(name: "/", page: () => Login()),
-    GetPage(name: "/mylist", page: () => MyList()),
-    GetPage(name: "/SgtMyAccount", page: () => SgtMyAccount()),
-    GetPage(name: "/CreateRoute", page: () => CreateRoute()),
-    GetPage(name: "/Shift", page: () => Shift()),
-    GetPage(name: "/Properties", page: () => Properties()),
-    GetPage(name: "/SelectPlan", page: () => SelectPlan()),
-    GetPage(name: "/StackOver", page: () => StackOver()),
-    GetPage(name: '/AddNewGuard', page: () => AddNewGuard()),
-    GetPage(name: '/ProfilePage', page: () => ProfilePage()),
-    GetPage(name: '/AddressPage', page: () => AddressPage())
+    GetPage(name: "/", page: () => const Login()),
+    GetPage(name: "/mylist", page: () => const MyList()),
+    GetPage(name: "/SgtMyAccount", page: () => const SgtMyAccount()),
+    GetPage(name: "/CreateRoute", page: () => const CreateRoute()),
+    GetPage(name: "/Shift", page: () => const Shift()),
+    GetPage(name: "/Properties", page: () => const Properties()),
+    GetPage(name: "/SelectPlan", page: () => const SelectPlan()),
+    GetPage(name: "/StackOver", page: () => const StackOver()),
+    GetPage(name: '/AddNewGuard', page: () => const AddNewGuard()),
+    GetPage(name: '/ProfilePage', page: () => const ProfilePage()),
+    GetPage(name: '/AddressPage', page: () => const AddressPage())
   ];
 }

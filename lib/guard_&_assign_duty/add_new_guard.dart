@@ -13,7 +13,7 @@ class AddNewGuard extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           leading: IconButton(
-            icon: Icon(Icons.arrow_back),
+            icon: const Icon(Icons.arrow_back),
             onPressed: () {
               Get.back();
             },
@@ -54,7 +54,7 @@ class AddNewGuard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Image(
-                          width: 168.w, image: AssetImage('assets/ang-1.png')),
+                          width: 168.w, image: const AssetImage('assets/ang-1.png')),
                       SizedBox(
                         height: 16.h,
                       ),

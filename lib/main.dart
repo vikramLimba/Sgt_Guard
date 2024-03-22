@@ -21,7 +21,7 @@ class _LoginFormState extends State<LoginForm> {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: Size(360, 690),
+      designSize: const Size(360, 690),
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (_, child) {
@@ -32,7 +32,7 @@ class _LoginFormState extends State<LoginForm> {
           initialRoute: "/",
           defaultTransition: Transition.cupertino,
           getPages: RouteClass.routes,
-          home: Login(),
+          home: const Login(),
           builder: EasyLoading.init(),
         );
 

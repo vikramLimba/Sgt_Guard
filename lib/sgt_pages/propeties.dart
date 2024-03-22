@@ -95,7 +95,7 @@ class _PropertiesState extends State<Properties> {
                   width: 20.w,
                   height: 20.h,
                   fit: BoxFit.cover,
-                  image: AssetImage('assets/propertiesProfile.jpeg')),
+                  image: const AssetImage('assets/propertiesProfile.jpeg')),
             ),
             SizedBox(
               width: 16.w,
@@ -103,7 +103,7 @@ class _PropertiesState extends State<Properties> {
           ],
         ),
         body: Padding(
-          padding: EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16),
           child: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -276,13 +276,13 @@ class _PropertiesState extends State<Properties> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 16,
                                   ),
                                   Padding(
                                     padding:
                                         EdgeInsets.symmetric(horizontal: 0.w),
-                                    child: ProgressBar(currentIndex: 0),
+                                    child: const ProgressBar(currentIndex: 0),
                                   )
                                 ],
                               )),

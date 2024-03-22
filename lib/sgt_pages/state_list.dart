@@ -1,50 +1,50 @@
-// To parse this JSON data, do
-//
-// final countries = countriesFromJson(jsonString);
+// // To parse this JSON data, do
+// //
+// // final countries = countriesFromJson(jsonString);
 
-import 'dart:convert';
+// import 'dart:convert';
 
-Countries countriesFromJson(String str) => Countries.fromJson(json.decode(str));
+// Countries countriesFromJson(String str) => Countries.fromJson(json.decode(str));
 
-String countriesToJson(Countries data) => json.encode(data.toJson());
+// String countriesToJson(Countries data) => json.encode(data.toJson());
 
-class Countries {
-  List<Country> countries;
+// class Countries {
+//   List<Country> countries;
 
-  Countries({
-    required this.countries,
-  });
+//   Countries({
+//     required this.countries,
+//   });
 
-  factory Countries.fromJson(Map<String, dynamic> json) => Countries(
-        countries: List<Country>.from(
-            json["countries"].map((x) => Country.fromJson(x))),
-      );
+//   factory Countries.fromJson(Map<String, dynamic> json) => Countries(
+//         countries: List<Country>.from(
+//             json["countries"].map((x) => Country.fromJson(x))),
+//       );
 
-  Map<String, dynamic> toJson() => {
-        "countries": List<dynamic>.from(countries.map((x) => x.toJson())),
-      };
-}
+//   Map<String, dynamic> toJson() => {
+//         "countries": List<dynamic>.from(countries.map((x) => x.toJson())),
+//       };
+// }
 
-class Country {
-  String country;
-  List<String> states;
+// class Country {
+//   String country;
+//   List<String> states;
 
-  Country({
-    required this.country,
-    required this.states,
-  });
+//   Country({
+//     required this.country,
+//     required this.states,
+//   });
 
-  factory Country.fromJson(Map<String, dynamic> json) => Country(
-        country: json["country"],
-        states: List<String>.from(json["states"].map((x) => x)),
-      );
+//   factory Country.fromJson(Map<String, dynamic> json) => Country(
+//         country: json["country"],
+//         states: List<String>.from(json["states"].map((x) => x)),
+//       );
 
-  Map<String, dynamic> toJson() => {
-        "country": country,
-        "states": List<dynamic>.from(states.map((x) => x)),
-      };
-  @override
-  String toString() {
-    return 'Country: $country, States: $states';
-  }
-}
+//   Map<String, dynamic> toJson() => {
+//         "country": country,
+//         "states": List<dynamic>.from(states.map((x) => x)),
+//       };
+//   @override
+//   String toString() {
+//     return 'Country: $country, States: $states';
+//   }
+// }

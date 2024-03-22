@@ -453,5 +453,3 @@ class _SgtMyAccountState extends State<SgtMyAccount> {
     );
   }
 }
-
-class countryStateCity {}

@@ -71,11 +71,11 @@ class Country {
     if (json['timezones'] != null) {
       timezones = <Timezones>[];
       json['timezones'].forEach((v) {
-        timezones!.add(new Timezones.fromJson(v));
+        timezones!.add(Timezones.fromJson(v));
       });
     }
     translations = json['translations'] != null
-        ? new Translations.fromJson(json['translations'])
+        ? Translations.fromJson(json['translations'])
         : null;
     latitude = json['latitude'];
     longitude = json['longitude'];
@@ -84,42 +84,42 @@ class Country {
     if (json['states'] != null) {
       states = <States>[];
       json['states'].forEach((v) {
-        states!.add(new States.fromJson(v));
+        states!.add(States.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['iso3'] = this.iso3;
-    data['iso2'] = this.iso2;
-    data['numeric_code'] = this.numericCode;
-    data['phone_code'] = this.phoneCode;
-    data['capital'] = this.capital;
-    data['currency'] = this.currency;
-    data['currency_name'] = this.currencyName;
-    data['currency_symbol'] = this.currencySymbol;
-    data['tld'] = this.tld;
-    data['native'] = this.native;
-    data['region'] = this.region;
-    data['region_id'] = this.regionId;
-    data['subregion'] = this.subregion;
-    data['subregion_id'] = this.subregionId;
-    data['nationality'] = this.nationality;
-    if (this.timezones != null) {
-      data['timezones'] = this.timezones!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['iso3'] = iso3;
+    data['iso2'] = iso2;
+    data['numeric_code'] = numericCode;
+    data['phone_code'] = phoneCode;
+    data['capital'] = capital;
+    data['currency'] = currency;
+    data['currency_name'] = currencyName;
+    data['currency_symbol'] = currencySymbol;
+    data['tld'] = tld;
+    data['native'] = native;
+    data['region'] = region;
+    data['region_id'] = regionId;
+    data['subregion'] = subregion;
+    data['subregion_id'] = subregionId;
+    data['nationality'] = nationality;
+    if (timezones != null) {
+      data['timezones'] = timezones!.map((v) => v.toJson()).toList();
     }
-    if (this.translations != null) {
-      data['translations'] = this.translations!.toJson();
+    if (translations != null) {
+      data['translations'] = translations!.toJson();
     }
-    data['latitude'] = this.latitude;
-    data['longitude'] = this.longitude;
-    data['emoji'] = this.emoji;
-    data['emojiU'] = this.emojiU;
-    if (this.states != null) {
-      data['states'] = this.states!.map((v) => v.toJson()).toList();
+    data['latitude'] = latitude;
+    data['longitude'] = longitude;
+    data['emoji'] = emoji;
+    data['emojiU'] = emojiU;
+    if (states != null) {
+      data['states'] = states!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -148,12 +148,12 @@ class Timezones {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['zoneName'] = this.zoneName;
-    data['gmtOffset'] = this.gmtOffset;
-    data['gmtOffsetName'] = this.gmtOffsetName;
-    data['abbreviation'] = this.abbreviation;
-    data['tzName'] = this.tzName;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['zoneName'] = zoneName;
+    data['gmtOffset'] = gmtOffset;
+    data['gmtOffsetName'] = gmtOffsetName;
+    data['abbreviation'] = abbreviation;
+    data['tzName'] = tzName;
     return data;
   }
 }
@@ -205,20 +205,20 @@ class Translations {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['kr'] = this.kr;
-    data['pt-BR'] = this.ptBR;
-    data['pt'] = this.pt;
-    data['nl'] = this.nl;
-    data['hr'] = this.hr;
-    data['fa'] = this.fa;
-    data['de'] = this.de;
-    data['es'] = this.es;
-    data['fr'] = this.fr;
-    data['ja'] = this.ja;
-    data['it'] = this.it;
-    data['cn'] = this.cn;
-    data['tr'] = this.tr;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['kr'] = kr;
+    data['pt-BR'] = ptBR;
+    data['pt'] = pt;
+    data['nl'] = nl;
+    data['hr'] = hr;
+    data['fa'] = fa;
+    data['de'] = de;
+    data['es'] = es;
+    data['fr'] = fr;
+    data['ja'] = ja;
+    data['it'] = it;
+    data['cn'] = cn;
+    data['tr'] = tr;
     return data;
   }
 }
@@ -251,21 +251,21 @@ class States {
     if (json['cities'] != null) {
       cities = <Cities>[];
       json['cities'].forEach((v) {
-        cities!.add(new Cities.fromJson(v));
+        cities!.add(Cities.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['state_code'] = this.stateCode;
-    data['latitude'] = this.latitude;
-    data['longitude'] = this.longitude;
-    data['type'] = this.type;
-    if (this.cities != null) {
-      data['cities'] = this.cities!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['state_code'] = stateCode;
+    data['latitude'] = latitude;
+    data['longitude'] = longitude;
+    data['type'] = type;
+    if (cities != null) {
+      data['cities'] = cities!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -289,11 +289,11 @@ class Cities {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['latitude'] = this.latitude;
-    data['longitude'] = this.longitude;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['latitude'] = latitude;
+    data['longitude'] = longitude;
     return data;
   }
 }

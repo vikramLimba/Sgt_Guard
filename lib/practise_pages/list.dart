@@ -140,12 +140,12 @@ class _ListState extends State<MyList> {
                       style: TextStyle(color: Colors.black),
                     )),
               ),
-              Container(
+              SizedBox(
                 height: 200,
                 width: 200,
                 child: Transform.rotate(
                   angle: 90 * (pi / 180),
-                  child: Divider(
+                  child: const Divider(
                     height: 50,
                     thickness: 5,
                     color: Colors.red,

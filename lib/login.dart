@@ -205,7 +205,7 @@ class _LoginState extends State<Login> {
                             )),
                         TextButton(
                             onPressed: () {
-                              Get.toNamed('AddNewGuard');
+                              Get.toNamed('AddressPage');
                             },
                             child: Text(
                               "Add New Guard",
@@ -424,7 +424,7 @@ class _LoginState extends State<Login> {
                         return Stack(
                           clipBehavior: Clip.none,
                           children: [
-                            Container(
+                            SizedBox(
                               height: 64,
                               child: ListTile(
                                 contentPadding:
@@ -544,7 +544,7 @@ class _LoginState extends State<Login> {
                                               TextSpan(
                                                   text:
                                                       "${checkInData[index]['time']}",
-                                                  style: TextStyle(
+                                                  style: const TextStyle(
                                                     color: Colors.green,
                                                     fontSize: 10,
                                                     fontWeight: FontWeight.w600,

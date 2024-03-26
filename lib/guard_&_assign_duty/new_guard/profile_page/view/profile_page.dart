@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart'
-    show CalendarCarousel, WeekdayFormat;
+    show CalendarCarousel;
 import 'package:form_login/guard_&_assign_duty/new_guard/shared/view/image_picker.dart';
 
 import 'package:flutter/material.dart';

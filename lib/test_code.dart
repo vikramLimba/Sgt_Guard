@@ -1,7 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:form_login/guard_&_assign_duty/new_guard/shared/view/countryStateCityPicker.dart';
+import 'package:form_login/guard_&_assign_duty/new_guard/shared/controller/location_picker_controller.dart';
+import 'package:form_login/guard_&_assign_duty/new_guard/shared/view/location_picker.dart';
 import 'package:form_login/sgt_pages/country_state_city_model.dart';
 
 class StackOver extends StatefulWidget {
@@ -105,7 +106,9 @@ class _StackOverState extends State<StackOver>
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(top: 30),
-                    child: Container(child: const CountryStateCityPicker()),
+                    child: LocationPicker(
+                      locationController: LocationPickerController(),
+                    ),
                   ),
                   // first tab bar view widget
                   // Center(

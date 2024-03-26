@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:form_login/guard_&_assign_duty/new_guard/address_page/controller/address_controller.dart';
 import 'package:form_login/guard_&_assign_duty/new_guard/shared/controller/image_picker_controller.dart';
-import 'package:form_login/guard_&_assign_duty/new_guard/shared/view/countryStateCityPicker.dart';
+import 'package:form_login/guard_&_assign_duty/new_guard/shared/controller/location_picker_controller.dart';
+import 'package:form_login/guard_&_assign_duty/new_guard/shared/view/location_picker.dart';
 import 'package:form_login/guard_&_assign_duty/new_guard/shared/view/image_picker.dart';
 import 'package:form_login/guard_&_assign_duty/new_guard/shared/view/new_guard_progress_bar.dart';
 import 'package:form_login/sgt_pages/country_state_city_model.dart';
@@ -21,30 +22,6 @@ class AddressPage extends StatefulWidget {
 class _AddressPageState extends State<AddressPage> {
   ImagePickerController imgController = Get.put(ImagePickerController());
   final addressController = Get.put(AddressController());
-
-  String? selectedCountry;
-  String? selectedState;
-  String? selectedCity;
-
-  List<States> selectedCountryStates = [];
-  List<Cities> selectedStatesCities = [];
-
-  @override
-  void initState() {
-    super.initState();
-    getCountries();
-  }
-
-  Future<List<Country>> getCountries() async {
-    String data = await DefaultAssetBundle.of(context)
-        .loadString("assets/data/country_state_city.json");
-    List mapData = jsonDecode(data);
-
-    List<Country> countryList =
-        mapData.map((countries) => Country.fromJson(countries)).toList();
-
-    return countryList;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -130,7 +107,9 @@ class _AddressPageState extends State<AddressPage> {
                               SizedBox(
                                 height: 20.h,
                               ),
-                              const CountryStateCityPicker(),
+                              LocationPicker(
+                                locationController: LocationPickerController(),
+                              ),
                               SizedBox(
                                 height: 8.h,
                               ),
@@ -181,12 +160,12 @@ class _AddressPageState extends State<AddressPage> {
     return SizedBox(
       // height: 90.h,
       child: Form(
-        // key: profileController.fNameFormKey,
+        key: addressController.streetAddressFormKey,
         autovalidateMode: AutovalidateMode.onUserInteraction,
         child: SizedBox(
           child: TextFormField(
             maxLines: 2,
-            // controller: profileController.fNameController,
+            controller: addressController.streesAddressController,
             maxLength: 64,
             decoration: InputDecoration(
                 // contentPadding:
@@ -209,12 +188,13 @@ class _AddressPageState extends State<AddressPage> {
                 border: OutlineInputBorder(
                     borderSide: const BorderSide(color: AppColors.grayColor),
                     borderRadius: BorderRadius.circular(5.r))),
-            // onChanged: (value) {
-            //   // profileController.fName = value;
-            // },
-            // validator: (value) {
-            //   // return profileController.validateFName(value!);
-            // },
+            onChanged: (value) {
+              addressController.streetAddress = value;
+            },
+            validator: (value) {
+              return addressController.validataStreetAdrees(value!);
+              // return profileController.validateFName(value!);
+            },
             // focusNode: _fNameFocus,
             // onTapOutside: (event) {
             //   FocusScope.of(context).unfocus();
@@ -232,9 +212,11 @@ class _AddressPageState extends State<AddressPage> {
     return SizedBox(
       // height: 90.h,
       child: Form(
+        key: addressController.postalCodeFormKey,
         // key: profileController.fNameFormKey,
         autovalidateMode: AutovalidateMode.onUserInteraction,
         child: TextFormField(
+          controller: addressController.postalCodeController,
           // controller: profileController.fNameController,
           decoration: InputDecoration(
               contentPadding:
@@ -257,19 +239,21 @@ class _AddressPageState extends State<AddressPage> {
               border: OutlineInputBorder(
                   borderSide: const BorderSide(color: AppColors.grayColor),
                   borderRadius: BorderRadius.circular(5.r))),
-          // onChanged: (value) {
-          //   // profileController.fName = value;
-          // },
-          // validator: (value) {
-          //   // return profileController.validateFName(value!);
-          // },
+          onChanged: (value) {
+            addressController.postalCode = value;
+            // profileController.fName = value;
+          },
+          validator: (value) {
+            return addressController.validatePostalCode(value!);
+            // return profileController.validateFName(value!);
+          },
           // focusNode: _fNameFocus,
-          onTapOutside: (event) {
-            // FocusScope.of(context).unfocus();
-          },
-          onFieldSubmitted: (value) {
-            // FocusScope.of(context).requestFocus(_lNameFocus);
-          },
+          // onTapOutside: (event) {
+          //   // FocusScope.of(context).unfocus();
+          // },
+          // onFieldSubmitted: (value) {
+          //   // FocusScope.of(context).requestFocus(_lNameFocus);
+          // },
         ),
       ),
     );

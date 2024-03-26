@@ -2,17 +2,23 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:form_login/guard_&_assign_duty/new_guard/shared/controller/location_picker_controller.dart';
 import 'package:form_login/sgt_pages/country_state_city_model.dart';
 import 'package:form_login/styles/colors.dart';
+import 'package:get/get.dart';
 
-class CountryStateCityPicker extends StatefulWidget {
-  const CountryStateCityPicker({super.key});
+class LocationPicker extends StatefulWidget {
+  final LocationPickerController locationController;
+  const LocationPicker({super.key, required this.locationController});
 
   @override
-  State<CountryStateCityPicker> createState() => _CountryStateCityPickerState();
+  State<LocationPicker> createState() => _LocationPickerState();
 }
 
-class _CountryStateCityPickerState extends State<CountryStateCityPicker> {
+class _LocationPickerState extends State<LocationPicker> {
+  LocationPickerController locationController =
+      Get.put(LocationPickerController());
+
   String? selectedCountry;
   String? selectedState;
   String? selectedCity;
@@ -42,16 +48,18 @@ class _CountryStateCityPickerState extends State<CountryStateCityPicker> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        buildCountry(),
-        SizedBox(
-          height: 20.h,
-        ),
-        buildState(),
-        SizedBox(height: 20.h),
-        buildCity(),
-      ],
+    return Obx(
+      () => Column(
+        children: [
+          buildCountry(),
+          SizedBox(
+            height: 20.h,
+          ),
+          buildState(),
+          SizedBox(height: 20.h),
+          buildCity(),
+        ],
+      ),
     );
   }
 
@@ -80,7 +88,7 @@ class _CountryStateCityPickerState extends State<CountryStateCityPicker> {
                       borderSide: BorderSide(
                           color: Color.fromRGBO(216, 216, 220, 1), width: 1)),
                   border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(4)),
+                      borderRadius: BorderRadius.circular(4.r)),
                   label: Text(
                     "Country",
                     style: TextStyle(
@@ -100,25 +108,48 @@ class _CountryStateCityPickerState extends State<CountryStateCityPicker> {
                   ),
               items: snapshotData
                   ?.map((country) => DropdownMenuItem(
-                      value: country.name.toString(),
+                      value: country.name!,
                       child: Text(
-                        country.name.toString(),
+                        country.name!,
                       )))
                   .toList(),
               onChanged: (newValue) {
-                setState(() {
-                  selectedCountry = newValue;
-                  selectedState = null;
-                  selectedCity = null;
+                locationController.selectedCountry.value = newValue!;
+                locationController.selectedState.value = "";
+                locationController.selectedCity.value = "";
 
-                  print("selectedCountry:$selectedCountry");
+                locationController.selectedCountryStates =
+                    snapshotData!.firstWhere((element) {
+                  return element.name == newValue;
+                }).states!;
+                print(
+                    "selectedCountry:${locationController.selectedCountry.value}");
+                // setState(() {
+                //   locationController.selectedCountry.value = newValue!;
+                //   locationController.selectedState.value = "";
+                //   locationController.selectedCity.value = "";
 
-                  selectedCountryStates = snapshotData!
-                      .firstWhere((element) => element.name == newValue)
-                      .states!;
-                });
+                //   locationController.selectedCountryStates =
+                //       snapshotData!.firstWhere((element) {
+                //     return element.name == newValue;
+                //   }).states!;
+                //   print(
+                //       "selectedCountry:${locationController.selectedCountry.value}");
+                // });
+
+                // setState(() {
+                //   selectedState = null;
+                //   selectedCity = null;
+
+                //   print("selectedCountry:$selectedCountry");
+
+                //   selectedCountryStates = snapshotData!
+                //       .firstWhere((element) => element.name == newValue)
+                //       .states!;
+                // });
               },
-              value: selectedCountry,
+              // value: locationController.selectedCountry.value,
+              // value: selectedCountry,
             );
           } else {
             return Container();
@@ -134,8 +165,8 @@ class _CountryStateCityPickerState extends State<CountryStateCityPicker> {
           focusedBorder: const OutlineInputBorder(
               borderSide: BorderSide(
                   color: Color.fromRGBO(216, 216, 220, 1), width: 1)),
-          border: const OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(4))),
+          border: OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(4.r))),
           label: Text(
             "State",
             style: TextStyle(
@@ -151,22 +182,42 @@ class _CountryStateCityPickerState extends State<CountryStateCityPicker> {
           //       TextSpan(text: "*", style: TextStyle(color: Colors.red))
           //     ]))
           ),
-      items: selectedCountryStates
-          .map((e) =>
-              DropdownMenuItem<dynamic>(value: e.name!, child: Text(e.name!)))
+      items: locationController.selectedCountryStates
+          .map((state) => DropdownMenuItem<dynamic>(
+              value: state.name.toString(), child: Text(state.name.toString())))
           .toList(),
       onChanged: (newValue) {
-        setState(() {
-          selectedState = newValue;
-          selectedCity = null;
-          print("selected State: $selectedState");
+        locationController.selectedState.value = newValue;
+        locationController.selectedCity.value = "";
+        print("selected State: ${locationController.selectedState.value}");
 
-          selectedStatesCities = selectedCountryStates
-              .firstWhere((element) => element.name == newValue)
-              .cities!;
-        });
+        locationController.selectedStatesCities = locationController
+            .selectedCountryStates
+            .firstWhere((element) => element.name == newValue)
+            .cities!;
+        // setState(() {
+        //   locationController.selectedState.value = newValue;
+        //   locationController.selectedCity.value = "";
+        //   print("selected State: ${locationController.selectedState.value}");
+
+        //   locationController.selectedStatesCities = locationController
+        //       .selectedCountryStates
+        //       .firstWhere((element) => element.name == newValue)
+        //       .cities!;
+        // });
+
+        // setState(() {
+        //   selectedState = newValue;
+        //   selectedCity = null;
+        //   print("selected State: $selectedState");
+
+        //   selectedStatesCities = selectedCountryStates
+        //       .firstWhere((element) => element.name == newValue)
+        //       .cities!;
+        // });
       },
-      value: selectedState,
+      // value: selectedState,
+      // value: locationController.selectedState.value.toString(),
     );
   }
 

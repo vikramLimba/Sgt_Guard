@@ -18,6 +18,12 @@ class LocationPickerController extends GetxController {
   List selectedCountryStates = [].obs;
   List selectedStatesCities = [].obs;
 
+  RxBool isCountryValid = false.obs,
+      isStateValid = false.obs,
+      isCityValid = false.obs;
+
+  RxBool validBtnEnable = false.obs;
+
   @override
   void onInit() {
     countryController = TextEditingController();
@@ -33,5 +39,77 @@ class LocationPickerController extends GetxController {
     cityController.dispose();
 
     super.dispose();
+  }
+
+  String? validateCountry(String value) {
+    if (value.isEmpty || value == '') {
+      Future.delayed(Duration.zero, () {
+        isCountryValid.value = false;
+        return "\u24D8  Please Select Country";
+      });
+    }
+    Future.delayed(Duration.zero, () {
+      print("country valid");
+      isCountryValid.value = true;
+      if (isCountryValid.value && isStateValid.value && isCityValid.value) {
+        validBtnEnable.value = true;
+      }
+    });
+
+    return null;
+  }
+
+  String? validateState(String value) {
+    if (value == "") {
+      Future.delayed(Duration.zero, () {
+        isStateValid.value = false;
+        return "\u24D8  Please Select State";
+      });
+    }
+    Future.delayed(Duration.zero, () {
+      isStateValid.value = true;
+      if (isCountryValid.value && isStateValid.value && isCityValid.value) {
+        validBtnEnable.value = true;
+      }
+    });
+    return null;
+  }
+
+  String? validateCity(String value) {
+    if (value == "") {
+      Future.delayed(Duration.zero, () {
+        isCityValid.value = false;
+        return "\u24D8  Please Select City";
+      });
+    }
+    Future.delayed(Duration.zero, () {
+      isCityValid.value = true;
+      if (isCountryValid.value && isStateValid.value && isCityValid.value) {
+        validBtnEnable.value = true;
+      }
+    });
+    return null;
+  }
+
+  void checkLocationValid() {
+    isCountryValid.value = countryFormKey.currentState!.validate();
+    if (!isCountryValid.value) {
+      validBtnEnable.value = false;
+    } else {
+      countryFormKey.currentState!.save();
+    }
+
+    isStateValid.value = stateFormKey.currentState!.validate();
+    if (!isStateValid.value) {
+      validBtnEnable.value = false;
+    } else {
+      stateFormKey.currentState!.save();
+    }
+
+    if (!isCityValid.value) {
+      validBtnEnable.value = false;
+    } else {
+      cityFormKey.currentState!.save();
+    }
   }
 }

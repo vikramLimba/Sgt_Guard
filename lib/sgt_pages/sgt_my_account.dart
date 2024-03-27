@@ -345,6 +345,7 @@ class _SgtMyAccountState extends State<SgtMyAccount> {
             snapshotData = snapshot.data;
 
             return DropdownButtonFormField(
+              icon: Icon(Icons.keyboard_arrow_down_rounded),
               decoration: InputDecoration(
                   focusedBorder: const OutlineInputBorder(
                       borderSide: BorderSide(
@@ -390,6 +391,7 @@ class _SgtMyAccountState extends State<SgtMyAccount> {
 
   Widget buildState() {
     return DropdownButtonFormField(
+      icon: Icon(Icons.keyboard_arrow_down_rounded),
       isExpanded: true,
       decoration: InputDecoration(
           focusedBorder: const OutlineInputBorder(

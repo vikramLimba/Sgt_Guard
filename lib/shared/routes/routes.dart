@@ -1,4 +1,5 @@
 import 'package:form_login/guard_&_assign_duty/new_guard/address_page/view/address_page.dart';
+import 'package:form_login/guard_&_assign_duty/new_guard/password_page/view/password_page.dart';
 import 'package:form_login/guard_&_assign_duty/new_guard/profile_page/view/profile_page.dart';
 import 'package:form_login/guard_&_assign_duty/add_new_guard.dart';
 import 'package:form_login/sgt_pages/create_route.dart';
@@ -23,6 +24,10 @@ class RouteClass {
     GetPage(name: "/StackOver", page: () => const StackOver()),
     GetPage(name: '/AddNewGuard', page: () => const AddNewGuard()),
     GetPage(name: '/ProfilePage', page: () => const ProfilePage()),
-    GetPage(name: '/AddressPage', page: () => const AddressPage())
+    GetPage(name: '/AddressPage', page: () => const AddressPage()),
+    GetPage(
+      name: '/PasswordPage',
+      page: () => const PasswordPage(),
+    )
   ];
 }

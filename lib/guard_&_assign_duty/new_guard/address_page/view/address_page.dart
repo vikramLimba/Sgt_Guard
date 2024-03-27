@@ -22,6 +22,7 @@ class AddressPage extends StatefulWidget {
 class _AddressPageState extends State<AddressPage> {
   ImagePickerController imgController = Get.put(ImagePickerController());
   final addressController = Get.put(AddressController());
+  final locationController = Get.put(LocationPickerController());
 
   @override
   Widget build(BuildContext context) {
@@ -108,7 +109,7 @@ class _AddressPageState extends State<AddressPage> {
                                 height: 20.h,
                               ),
                               LocationPicker(
-                                locationController: LocationPickerController(),
+                                locationController: locationController,
                               ),
                               SizedBox(
                                 height: 8.h,
@@ -135,6 +136,7 @@ class _AddressPageState extends State<AddressPage> {
                               onPressed: addressController.btnEnable.value
                                   ? () {
                                       print("======> click");
+                                      addressController.checkAddressValid();
                                       // profileController.checkValid();
                                     }
                                   : null
@@ -182,7 +184,7 @@ class _AddressPageState extends State<AddressPage> {
                   "Street Address",
                   style: TextStyle(
                       fontSize: 12.sp,
-                      fontWeight: FontWeight.w400,
+                      fontWeight: FontWeight.w300,
                       color: Colors.black87),
                 ),
                 border: OutlineInputBorder(
@@ -213,11 +215,9 @@ class _AddressPageState extends State<AddressPage> {
       // height: 90.h,
       child: Form(
         key: addressController.postalCodeFormKey,
-        // key: profileController.fNameFormKey,
         autovalidateMode: AutovalidateMode.onUserInteraction,
         child: TextFormField(
           controller: addressController.postalCodeController,
-          // controller: profileController.fNameController,
           decoration: InputDecoration(
               contentPadding:
                   EdgeInsets.symmetric(vertical: 13.h, horizontal: 10.w),
@@ -230,10 +230,10 @@ class _AddressPageState extends State<AddressPage> {
                   borderSide: BorderSide(
                       color: Color.fromRGBO(216, 216, 220, 1), width: 1)),
               label: Text(
-                "Enter Postal Code",
+                "Postal Code",
                 style: TextStyle(
                     fontSize: 12.sp,
-                    fontWeight: FontWeight.w400,
+                    fontWeight: FontWeight.w300,
                     color: Colors.black87),
               ),
               border: OutlineInputBorder(
@@ -241,11 +241,9 @@ class _AddressPageState extends State<AddressPage> {
                   borderRadius: BorderRadius.circular(5.r))),
           onChanged: (value) {
             addressController.postalCode = value;
-            // profileController.fName = value;
           },
           validator: (value) {
             return addressController.validatePostalCode(value!);
-            // return profileController.validateFName(value!);
           },
           // focusNode: _fNameFocus,
           // onTapOutside: (event) {

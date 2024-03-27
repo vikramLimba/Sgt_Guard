@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:form_login/guard_&_assign_duty/new_guard/shared/controller/location_picker_controller.dart';
 import 'package:get/get.dart';
 
 class AddressController extends GetxController {
+  final locationController = Get.put(LocationPickerController());
+
   final GlobalKey<FormState> streetAddressFormKey = GlobalKey<FormState>();
   final GlobalKey<FormState> postalCodeFormKey = GlobalKey<FormState>();
 
@@ -9,11 +12,7 @@ class AddressController extends GetxController {
 
   var streetAddress = '', postalCode = '', country = '', state = '', city = '';
 
-  RxBool isStreetAddressValid = false.obs,
-      isPostalCodeValid = false.obs,
-      isCountryValid = false.obs,
-      isStateValid = false.obs,
-      isCityValid = false.obs;
+  RxBool isStreetAddressValid = false.obs, isPostalCodeValid = false.obs;
 
   RxBool btnEnable = false.obs;
 
@@ -42,6 +41,17 @@ class AddressController extends GetxController {
 
       return "\u24D8  Please Enter Street Address";
     }
+    Future.delayed(Duration.zero, () {
+      print("street Address valid");
+      isStreetAddressValid.value = true;
+      if (isStreetAddressValid.value && isPostalCodeValid.value
+          //  &&
+          // locationController.validBtnEnable.value
+          ) {
+        btnEnable.value = true;
+      }
+    });
+
     return null;
   }
 
@@ -53,30 +63,38 @@ class AddressController extends GetxController {
       });
       return "\u24D8  Please Enter Postal Code";
     }
+    Future.delayed(Duration.zero, () {
+      isPostalCodeValid.value = true;
+      if (isStreetAddressValid.value && isPostalCodeValid.value
+          // &&
+          // locationController.validBtnEnable.value
+          ) {
+        btnEnable.value = true;
+      }
+    });
     return null;
   }
 
-  String? validateCountry(String value) {
-    if (value == "") {
-      isCountryValid.value = false;
-      return "\u24D8  Please Select Country";
+  void checkAddressValid() {
+    locationController.checkLocationValid();
+    isStreetAddressValid.value = streetAddressFormKey.currentState!.validate();
+    if (!isStreetAddressValid.value) {
+      btnEnable.value = false;
+    } else {
+      streetAddressFormKey.currentState!.save();
     }
-    return null;
-  }
 
-  String? validateState(String value) {
-    if (value == "") {
-      isStateValid.value = false;
-      return "\u24D8  Please Select State";
+    isPostalCodeValid.value = postalCodeFormKey.currentState!.validate();
+    if (!isPostalCodeValid.value) {
+      btnEnable.value = false;
+    } else {
+      postalCodeFormKey.currentState!.save();
     }
-    return null;
-  }
-
-  String? validateCity(String value) {
-    if (value == "") {
-      isCityValid.value = false;
-      return "\u24D8  Please Select City";
+    if (isStreetAddressValid.value && isStreetAddressValid.value) {
+      Get.toNamed("/PasswordPage")!.then((value) {
+        streesAddressController.clear();
+        postalCodeController.clear();
+      });
     }
-    return null;
   }
 }

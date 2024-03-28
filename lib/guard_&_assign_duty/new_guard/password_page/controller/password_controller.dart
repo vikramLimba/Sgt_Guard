@@ -68,32 +68,50 @@ class PasswordController extends GetxController {
       });
       return "\u24D8  Password must contain at least one special character";
     }
-    Future.delayed(Duration.zero, () {
-      isPasswordValid.value = true;
-      if (isPasswordValid.value &&
-          isConfirmPasswordValid.value &&
-          (passwordController.value == confirmPasswordController.value))
+
+    if (isPasswordValid.value &&
+        isConfirmPasswordValid.value &&
+        (value == confirmPassword)) {
+      Future.delayed(Duration.zero, () {
         btnEnabled.value = true;
-    });
+      });
+    }
+    if (value == confirmPassword) {
+      Future.delayed(Duration.zero, () {
+        btnEnabled.value = true;
+      });
+    }
+    if (value != confirmPassword) {
+      Future.delayed(Duration.zero, () {
+        btnEnabled.value = false;
+      });
+      return "\u24D8 Password not matched";
+    }
     return null;
   }
 
   String? validateConfirmPassword(String value) {
-    if (passwordController.value != confirmPasswordController.value) {
+    if (value == password) {
       Future.delayed(Duration.zero, () {
-        isConfirmPasswordValid.value = false;
+        btnEnabled.value = true;
+        isConfirmPasswordValid.value = true;
+      });
+    }
+    if (isPasswordValid.value &&
+        isConfirmPasswordValid.value &&
+        (value == password)) {
+      Future.delayed(Duration.zero, () {
+        btnEnabled.value = true;
+      });
+    }
+
+    if (value != password) {
+      Future.delayed(Duration.zero, () {
         btnEnabled.value = false;
       });
-      return "\u24D8  Password not matched";
+      return "\u24D8 Password not matched";
     }
-    Future.delayed(Duration.zero, () {
-      isConfirmPasswordValid.value = true;
-      if (isPasswordValid.value &&
-          isConfirmPasswordValid.value &&
-          (passwordController.value == confirmPasswordController.value)) {
-        btnEnabled.value = true;
-      }
-    });
+
     return null;
   }
 
@@ -111,5 +129,11 @@ class PasswordController extends GetxController {
     } else {
       confirmPasswordFormKey.currentState!.save();
     }
+    // if (isPasswordValid.value == isConfirmPasswordValid.value) {
+    //   Get.toNamed('/')!.then((value) {
+    //     passwordController.clear();
+    //     confirmPasswordController.clear();
+    //   });
+    // }
   }
 }

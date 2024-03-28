@@ -205,7 +205,7 @@ class _LoginState extends State<Login> {
                             )),
                         TextButton(
                             onPressed: () {
-                              Get.toNamed('PasswordPage');
+                              Get.toNamed('/IdCardPage');
                             },
                             child: Text(
                               "Add New Guard",

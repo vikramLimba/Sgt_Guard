@@ -135,14 +135,13 @@ class _PasswordPageState extends State<PasswordPage> {
                                 foregroundColor: AppColors.white),
                             onPressed: passwordController.btnEnabled.value
                                 ? () {
-                                    print("======> click");
                                     passwordController.checkPassword();
                                   }
                                 : null
                             //  () {}
                             ,
                             child: Text(
-                              "Next",
+                              "Save & Invite",
                               style: TextStyle(
                                   fontSize: 16.sp, fontWeight: FontWeight.w600),
                             )),
@@ -196,8 +195,9 @@ class _PasswordPageState extends State<PasswordPage> {
                         : Icons.visibility))),
             obscureText: visibilityController.ishidden1.value,
             onChanged: (value) {
-              passwordController.password = value;
-              print("pass: ${passwordController.password}");
+              setState(() {
+                passwordController.password = value;
+              });
             },
             validator: (value) {
               return passwordController.validatePassword(value!);
@@ -257,8 +257,9 @@ class _PasswordPageState extends State<PasswordPage> {
                         : Icons.visibility))),
             obscureText: visibilityController.ishidden2.value,
             onChanged: (value) {
-              passwordController.confirmPassword = value;
-              print("cnf pass: ${passwordController.confirmPassword}");
+              setState(() {
+                passwordController.confirmPassword = value;
+              });
             },
             validator: (value) {
               return passwordController.validateConfirmPassword(value!);

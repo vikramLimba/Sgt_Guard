@@ -1,4 +1,5 @@
 import 'package:form_login/guard_&_assign_duty/new_guard/address_page/view/address_page.dart';
+import 'package:form_login/guard_&_assign_duty/new_guard/id_card_page/view/id_card_page.dart';
 import 'package:form_login/guard_&_assign_duty/new_guard/password_page/view/password_page.dart';
 import 'package:form_login/guard_&_assign_duty/new_guard/profile_page/view/profile_page.dart';
 import 'package:form_login/guard_&_assign_duty/add_new_guard.dart';
@@ -28,6 +29,7 @@ class RouteClass {
     GetPage(
       name: '/PasswordPage',
       page: () => const PasswordPage(),
-    )
+    ),
+    GetPage(name: '/IdCardPage', page: () => const IdCardPage())
   ];
 }
